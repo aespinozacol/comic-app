@@ -36,11 +36,14 @@ jobs:
       # Build app for production
       - name: Build app bundle
         run: npm run build:prod
+      # Route file renaming
+      - name: Rename index for routing
+        run: mv dist/spa/index.html dist/spa/404.html  
       # Deploy to Github pages 
       - name: Deploy to Pages
         uses: crazy-max/ghaction-github-pages@v4.0.0
         with:
-          build_dir: dist/
+          build_dir: dist/spa
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
